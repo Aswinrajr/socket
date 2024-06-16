@@ -47,5 +47,5 @@ jobs:
           docker stop socket_chat || true
           docker rm socket_chat || true
 
-      - name: Run Docker Container
+      - name: Run Docker Container 
         run: docker run -d -p 8800:8800 --name socket_chat ${{ secrets.DOCKER_USERNAME }}/socket_chat:latest
