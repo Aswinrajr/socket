@@ -1,5 +1,5 @@
 const allowedOrigins = [
-  "https://www.api.findmyhomestay.online",
+  "https://www.findmyhomestay.online",
   "http://localhost:5173",
 ];
 
