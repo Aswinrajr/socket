@@ -1,17 +1,29 @@
-const io = require("socket.io")(8800, {
+const allowedOrigins = [
+  "https://www.findmyhomestay.online",
+  "http://localhost:5173",
+  
+];
+
+const io = require("socket.io")(8800, {         
   cors: {
-    origin: "http://localhost:5173",
-             
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {   
+        callback(null, true);         
+      } else {     
+              
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   },
 });
+      
+let activeUsers = [];    
+ 
+io.on("connection", (socket) => {    
+  console.log("New user connected: ", socket.id);   
+  console.log("Socket connected now :", socket.connected);   
 
-let activeUsers = [];
-
-io.on("connection", (socket) => {
-  console.log("New user connected: ", socket.id);
-  console.log("Socket connected:", socket.connected);
-
-  socket.on("new-user-add", (newUserId) => {
+  socket.on("new-user-add", (newUserId) => {  
     if (!activeUsers.some((user) => user.userId === newUserId)) {
       activeUsers.push({ userId: newUserId, socketId: socket.id });
     }
