@@ -7,17 +7,18 @@ const allowedOrigins = [
 const io = require("socket.io")(8800, {         
   cors: {
     origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);    
-      } else {
+      if (allowedOrigins.includes(origin) || !origin) {   
+        callback(null, true);         
+      } else {     
+              
         callback(new Error("Not allowed by CORS"));
       }
     },
   },
 });
-
+      
 let activeUsers = [];
-
+ 
 io.on("connection", (socket) => {
   console.log("New user connected: ", socket.id);
   console.log("Socket connected now :", socket.connected);
