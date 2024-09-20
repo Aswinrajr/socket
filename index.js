@@ -19,7 +19,7 @@ const io = require("socket.io")(8800, {
       
 let activeUsers = [];    
  
-io.on("connection", (socket) => {    
+io.on("connect", (socket) => {    
   console.log("New user connected: ", socket.id);   
   console.log("Socket connected now :", socket.connected);   
 
@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
       activeUsers.push({ userId: newUserId, socketId: socket.id });
     }
     console.log("Active users: ", activeUsers);
-    io.emit("get-users", activeUsers);
+    io.emit("get-users", activeUsers); 
   });
 
   socket.on("send-message", (data) => {
