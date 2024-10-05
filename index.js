@@ -1,7 +1,7 @@
 const allowedOrigins = [
   "https://www.findmyhomestay.online",
   "http://localhost:5173",
-  "https://find-my-home-frontend-6vla.vercel.app"
+  "https://find-my-home-frontend-1p4c.vercel.app"
   
 ];
 
